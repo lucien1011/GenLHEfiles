@@ -11,6 +11,7 @@ if __name__ == '__main__':
     parser.add_argument('--genproductions-dir', dest='genproductionsDir', help='Path to genproductions repository', default='/home/users/'+os.environ['USER']+'/mcProduction/genproductions')
     parser.add_argument('--no-sub', dest='noSub', action='store_true', help='Do not submit jobs')
     parser.add_argument('--proxy', dest="proxy", help="Path to proxy", default='/tmp/x509up_u31156')
+    parser.add_argument('--outDir', dest="outDir", help="output directory", default="")
     args = parser.parse_args()
 
     proc = args.proc
@@ -19,7 +20,7 @@ if __name__ == '__main__':
 
     script_dir = os.path.dirname(os.path.realpath(__file__))
     executable = script_dir+'/runGridpackGeneration.sh'
-    out_dir = '/hadoop/cms/store/user/'+os.environ['USER']+'/mcProduction/GRIDPACKS/'+proc
+    out_dir = '/hadoop/cms/store/user/'+os.environ['USER']+'/mcProduction/GRIDPACKS/'+proc if not args.outDir else args.outDir
 
     #gridpack generation script and misc scripts
     infile_list = [script_dir+'/gridpack_generation.sh'] #use modified gridpack generation script 

@@ -29,16 +29,20 @@ cp ${WORKDIR}/${PROCESS}_proc_card.dat cards/${PROCESS}
 cp ${WORKDIR}/${PROCESS}_customizecards.dat cards/${PROCESS}
 cp ${WORKDIR}/${PROCESS}_param_card.dat cards/${PROCESS}
 
+echo "Debugging"
+ls ${WORKDIR}
+
 #run script
 echo "Running gridpack generation"
 ./gridpack_generation.sh ${PROCESS} cards/${PROCESS} 
 
 #copy output
 echo "Copy output"
+cp ${PROCESS}_tarball.tar.xz ${OUTDIR}
 #lcg-cp -v -b -D srmv2 --vo cms file:${PROCESS}_tarball.tar.xz srm://bsrm-3.t2.ucsd.edu:8443/srm/v2/server?SFN=${OUTDIR}/${PROCESS}_tarball.tar.xz
-gfal-copy -p -f -t 4200 ${PROCESS}_tarball.tar.xz gsiftp://gftp.t2.ucsd.edu/${OUTDIR}/${PROCESS}_tarball.tar.xz --checksum ADLER32
+#gfal-copy -p -f -t 4200 ${PROCESS}_tarball.tar.xz gsiftp://gftp.t2.ucsd.edu/${OUTDIR}/${PROCESS}_tarball.tar.xz --checksum ADLER32
 #lcg-cp -v -b -D srmv2 --vo cms file:${PROCESS}.log srm://bsrm-3.t2.ucsd.edu:8443/srm/v2/server?SFN=${OUTDIR}/${PROCESS}.log
-gfal-copy -p -f -t 4200 ${PROCESS}.log gsiftp://gftp.t2.ucsd.edu/${OUTDIR}/${PROCESS}.log --checksum ADLER32
+#gfal-copy -p -f -t 4200 ${PROCESS}.log gsiftp://gftp.t2.ucsd.edu/${OUTDIR}/${PROCESS}.log --checksum ADLER32
 
 echo "ls in production dir"
 ls
