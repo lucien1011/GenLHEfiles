@@ -9,4 +9,4 @@ add process p p > t1 t1~ j @2
 add process p p > t1 t1~ j j @3
 add process p p > t1 t1~ j j j @4
 
-output SMS-StopStop-3J_mStop-%MPROD% -nojpeg
+output SMS-StopStop-bl_mStop-%MPROD% -nojpeg
