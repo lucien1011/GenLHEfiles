@@ -45,8 +45,9 @@ DECAY   2000004     0.00000000E+00   # scharm_R decays
 DECAY   1000005     0.00000000E+00   # sbottom1 decays
 DECAY   2000005     0.00000000E+00   # sbottom2 decays
 DECAY   1000006     1.00000000E+00   # stop1 decays
-      0.50000000E+00    -13     -5
-      0.50000000E+00    -11     -5
+      0.33333333E+00    -11     -5
+      0.33333333E+00    -13     -5
+      0.33333333E+00    -15     -5
 DECAY   2000006     0.00000000E+00   # stop2 decays
 
 DECAY   1000011     0.00000000E+00   # selectron_L decays

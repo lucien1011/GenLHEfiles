@@ -12,6 +12,7 @@ if __name__ == '__main__':
     parser.add_argument('--no-sub', dest='noSub', action='store_true', help='Do not submit jobs')
     parser.add_argument('--proxy', dest="proxy", help="Path to proxy", default='/tmp/x509up_u31156')
     parser.add_argument('--outDir', dest="outDir", help="output directory", default="")
+    parser.add_argument('--time', dest="time", help="Max time for each job in sec", default=3600)
     args = parser.parse_args()
 
     proc = args.proc
@@ -36,4 +37,4 @@ if __name__ == '__main__':
     infile = ','.join(infile_list)
 
     options = [proc, out_dir]
-    submitCondorJob(proc, executable, options, infile, label="gridpack", submit=(not args.noSub), proxy=args.proxy, isGridpackJob=True)
+    submitCondorJob(proc, executable, options, infile, label="gridpack", submit=(not args.noSub), proxy=args.proxy, isGridpackJob=True, maxTime=args.time)
