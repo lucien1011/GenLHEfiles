@@ -6,7 +6,7 @@ define j = j b b~
 
 generate p p > t1 t1~  @1
 add process p p > t1 t1~ j @2
-add process p p > t1 t1~ j j @3
-add process p p > t1 t1~ j j j @4
+#add process p p > t1 t1~ j j @3
+#add process p p > t1 t1~ j j j @4
 
 output SMS-StopStop-bl_mStop-%MPROD% -nojpeg

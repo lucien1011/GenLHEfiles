@@ -6,7 +6,7 @@ PART="_mStop-"
 
 ### Create cards and SLHAs for all mass points
 
-for MPROD in {800,900,1000} ; do
+for MPROD in {600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000}; do
     MODEL=${PROC}${PART}${MPROD}
     mkdir -p "${JOBS}/${MODEL}"
     cp ${TEMP}/${PROC}_run_card.dat "${JOBS}/${MODEL}/${MODEL}_run_card.dat"
