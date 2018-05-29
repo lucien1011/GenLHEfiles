@@ -1,4 +1,4 @@
-#### !/usr/local/bin/bash
+#!/bin/sh
 
 ### Script to generate LHE events and shower them using Pythia
 ### Intended for use with Condor at UCSD

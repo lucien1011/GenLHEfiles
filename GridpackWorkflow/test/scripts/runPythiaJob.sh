@@ -1,4 +1,4 @@
-#### !/usr/local/bin/bash
+#!/bin/sh
 
 ### Script to shower LHE events using Pythia
 ### Intended for use with Condor at UCSD
@@ -110,7 +110,8 @@ cmsDriver.py \
 
 echo "Hadronization finished. Copy output..."
 #lcg-cp -v -b -D srmv2 --vo cms file:`pwd`/${GENFILE} srm://bsrm-3.t2.ucsd.edu:8443/srm/v2/server?SFN=${OUTDIR}/${GENFILE}
-gfal-copy -p -f -t 4200 ${GENFILE} gsiftp://gftp.t2.ucsd.edu/${OUTDIR}/${GENFILE} --checksum ADLER32
+#gfal-copy -p -f -t 4200 ${GENFILE} gsiftp://gftp.t2.ucsd.edu/${OUTDIR}/${GENFILE} --checksum ADLER32
+cp ${GENFILE} ${OUTDIR}
 #cp $GENFILE $WORKDIR #for copying file back to submission directory
 
 echo "ls in cmssw src dir"

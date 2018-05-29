@@ -27,6 +27,9 @@ parser.add_argument('--no-sub', dest='noSub', action='store_true', help='Do not 
 parser.add_argument('--proxy', dest="proxy", help="Path to proxy", default='/tmp/x509up_u31156')
 parser.add_argument('--executable', help='Path to executable that should be run', 
         default = script_dir+'/runPythiaJob.sh')
+parser.add_argument('--outDir', dest="outDir", help="output directory", default="")
+parser.add_argument('--time', dest="time", help="Max time for each job in sec", default=3600)
+
 args = parser.parse_args()
 
 proc = args.proc
@@ -38,18 +41,19 @@ qcutList = args.qcutList
 nJetMax = args.nJetMax
 
 #get files
-inFilesList = ["root://cmsxrootd.fnal.gov/"+fl.split("/hadoop/cms")[-1] for fl in glob.glob(inDir+'/*.lhe')]
+#inFilesList = glob.glob(inDir+'/*.lhe')
+inFilesList = ["file:"+fl for fl in glob.glob(inDir+'/*.lhe')]
 infile = ','.join(inFilesList)
 
-out_dir='/hadoop/cms/store/user/'+os.environ['USER']+'/mcProduction/RAWSIM'
+out_dir='/hadoop/cms/store/user/'+os.environ['USER']+'/mcProduction/RAWSIM' if not args.outDir else args.outDir
 
 print "Will use Pythia to shower LHE events from files:",infile
 
 if len(qcutList)>0: qcutRange=qcutList
 
 for qcut in qcutRange:
-    outdir = out_dir+'/'+proc
+    outdir = out_dir+'/'
     outfile = '_'.join(['GEN',proc,str(qcut)+'.root'])
     options = [proc, os.path.basename(slha), str(qcut), outdir,infile,str(nJetMax)]
     submitCondorJob(proc, executable, options, slha, label=str(qcut), #outputToTransfer=outfile,
-            submit=(not args.noSub), proxy=args.proxy)
+            submit=(not args.noSub), proxy=args.proxy, maxTime=args.time)
